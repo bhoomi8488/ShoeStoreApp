@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.list.ListFragment">
+
+    <data class="com.example.shoestore.databinding.FragmentListBinding">
+
+        <variable
+            name="viewModel"
+            type="com.example.shoestore.screens.list.ListViewModel" />
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scroll_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp">
+
+            <LinearLayout
+                android:id="@+id/lin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--<ListView
+                    android:id="@+id/listView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+
+                    tools:ignore="NestedScrolling" />-->
+                <!-- <LinearLayout
+                     android:id="@+id/child_list"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical">
+
+                     &lt;!&ndash;<TextView
+                         android:id="@+id/txtDetail"
+                         style="@style/text_list"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Name" />&ndash;&gt;
+
+
+                 </LinearLayout>
+     -->
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/cancel" />
+    </FrameLayout>
+
+
+</layout>

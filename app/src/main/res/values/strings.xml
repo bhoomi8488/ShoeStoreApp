@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ShoeStore</string>
+    <string name="enter_email">Enter email address</string>
+    <string name="password">Enter password</string>
+    <string name="login">Login</string>
+    <string name="create">Create</string>
+    <string name="welcome">Welcome to Shoe store</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_detail">Wilkins\' ShoeCenter carries all of the leading brands of shoes in all of the hard to find sizes. Stop by our store located on the walking mall in Old Town Winchester, Virginia, to experience what it is like to be serviced by our top notch staff. If you are out of the area, we will ship the shoes you want to wherever you\'re located. Wilkins\' Shoe Center has made customer service and satisfaction number one since 1947.</string>
+    <string name="instruction_header">Who We Are</string>
+    <string name="instruction_detail">"Wilkins’ Shoe Center, Inc. is Virginia’s largest independent family shoe store, owned and operated by three generations since its beginning in 1947.
+Wilkins’ Shoe Center stocks only quality mens, womens and childrens shoes in sizes to fit most any foot. Our nearly 30,000 pair inventory allows our 20 full-time employees to give you a complete selection in style and sizes. We believe in quality, brand-name footwear and quality service. Our employees average nearly 25 years of experience each in the shoe business and are not paid on commission. They are paid based on their product knowledge and the friendly, quality service that they provide you, our customer.
+
+We hope you can visit Wilkins’ Shoe Center in historic Old Town Winchester, VA, and see our service and selection for yourself. If you are out of the area, please call us at 540-667-5600, and we will be glad to give you the same friendly service by phone and ship your selection promptly."</string>
+    <string name="shoe_detail">Shoe Information</string>
+    <string name="shoe_name">Shoe Name</string>
+    <string name="company">Company</string>
+    <string name="shoe_size">Shoe Size</string>
+    <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+</resources>
