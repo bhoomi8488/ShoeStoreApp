@@ -57,7 +57,7 @@ class ShoeDetailFragment : Fragment() {
 
         binding.btnCancel.setOnClickListener {
             val action =
-                ShoeDetailFragmentDirections.actionShoeDetailFragmentToListFragment("")
+                ShoeDetailFragmentDirections.actionShoeDetailFragmentToListFragment(viewModel.previousList)
             findNavController().navigate(action)
         }
 
