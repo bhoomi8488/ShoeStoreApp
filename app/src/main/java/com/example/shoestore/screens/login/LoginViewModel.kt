@@ -26,11 +26,6 @@ class LoginViewModel() : ViewModel() {
 
     fun getLogInResult(): LiveData<String> = logInResult
 
-    init {
-        isLogin.value = false
-        performValidation()
-    }
-
     /**
      * Called from activity on login button click
      */
@@ -55,9 +50,4 @@ class LoginViewModel() : ViewModel() {
         Log.i("LoginViewModel", "Login ViewModel destroyed")
     }
 
-
-    fun onLogInClicked() {
-
-        performValidation()
-    }
 }

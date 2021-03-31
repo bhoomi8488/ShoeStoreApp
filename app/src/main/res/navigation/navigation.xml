@@ -14,7 +14,7 @@
             android:id="@+id/action_loginFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/navigation"
+            app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_listFragment"
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.shoestore.screens.welcome.WelcomeFragment"
-        android:label="fragment_welcome"
+        android:label="@string/welcome"
         tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_instructionFragment"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/instructionFragment"
         android:name="com.example.shoestore.screens.instruction.InstructionFragment"
-        android:label="fragment_instruction"
+        android:label="@string/instruction_detail"
         tools:layout="@layout/fragment_instruction">
         <action
             android:id="@+id/action_instructionFragment_to_listFragment"
@@ -46,31 +46,27 @@
     <fragment
         android:id="@+id/shoeDetailFragment"
         android:name="com.example.shoestore.screens.detail.ShoeDetailFragment"
-        android:label="fragment_shoe_detail"
+        android:label="@string/shoe_detail"
         tools:layout="@layout/fragment_shoe_detail">
         <action
             android:id="@+id/action_shoeDetailFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/listFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="list_of_shoe"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.shoestore.screens.list.ListFragment"
-        android:label="fragment_list"
+        android:label="Shoe List"
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_shoeDetailFragment"
             app:destination="@id/shoeDetailFragment" />
         <argument
-            android:name="name"
-            app:argType="string" />
-        <argument
-            android:name="size"
-            app:argType="string" />
-        <argument
-            android:name="company"
-            app:argType="string" />
-        <argument
-            android:name="description"
+            android:name="list_detail"
             app:argType="string" />
     </fragment>
 </navigation>

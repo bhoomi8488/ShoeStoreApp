@@ -1,7 +1,6 @@
 package com.example.shoestore.screens.detail
 
 import android.util.Log
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,47 +14,56 @@ class ShoeDetailViewModel : ViewModel() {
     var compney: String = ""
     var shoeSize: String = ""
     var description: String = ""
+    var previousList: String = ""
 
     private val saveResult = MutableLiveData<String>()
 
     fun getsaveResult(): LiveData<String> = saveResult
 
-    private var isValue = MutableLiveData<Boolean>()
-
-    fun getIsValue(): LiveData<Boolean> = isValue
-
-
     fun performValidation(): Boolean {
 
         if (shoeName.isBlank()) {
             saveResult.value = "Enter Shoe Name"
-            isValue.value = false
             return false
         }
 
         if (compney.isBlank()) {
             saveResult.value = "Enter Compney"
-            isValue.value = false
             return false
         }
         if (shoeSize.isBlank()) {
             saveResult.value = "Enter Shoe Size"
-            isValue.value = false
             return false
         }
         if (description.isBlank()) {
             saveResult.value = "Enter Eescription"
-            isValue.value = false
             return false
         }
         saveResult.value = "Shoe Added."
-        isValue.value = true
         return true
+    }
+
+    fun getShoe(): String {
+
+        val builder = StringBuilder()
+        if (shoeSize.isNotBlank() && compney.isNotBlank() && shoeName.isNotBlank() && description.isNotBlank()) {
+            builder.append("Shoe Name: ").append(shoeName)
+            builder.append("\nCompany: ").append(compney)
+            builder.append("\nShoe Size: ").append(shoeSize)
+            builder.append("\nDescription: ").append(description)
+            builder.append("\n")
+            if (previousList.isNotBlank()) {
+                builder.append("\n").append(previousList)
+            }
+            return builder.toString()
+        } else {
+            return ""
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
-        Log.i("LoginViewModel", "Login ViewModel destroyed")
+        Log.i("ShoeDetailViewModel", "Shoe detail destroyed")
     }
 
 }

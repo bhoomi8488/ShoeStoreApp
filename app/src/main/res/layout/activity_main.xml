@@ -5,18 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--<androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />-->
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/myNavHostFragment"
@@ -24,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
+            android:layout_below="@+id/toolbar"
             app:navGraph="@navigation/navigation" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

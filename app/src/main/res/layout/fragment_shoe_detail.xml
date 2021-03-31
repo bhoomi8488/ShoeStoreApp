@@ -27,56 +27,62 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+
                 <TextView
                     android:id="@+id/txtTitle"
                     style="@style/text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="84dp"
+                    android:layout_margin="16dp"
                     android:text="@string/shoe_detail"
                     android:textSize="24sp" />
 
-
                 <EditText
                     android:id="@+id/edShoeName"
-                    style="@style/text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:ems="10"
-                    android:text="@={viewModel.shoeName}"
                     android:hint="@string/shoe_name"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.shoeName}"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/edCompany"
-                    style="@style/text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:ems="10"
-                    android:text="@={viewModel.compney}"
                     android:hint="@string/company"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.compney}"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/edShoeSize"
-                    style="@style/text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:layout_marginBottom="16dp"
                     android:hint="@string/shoe_size"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.shoeSize}" />
+                    android:text="@={viewModel.shoeSize}"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/edDescription"
-                    style="@style/text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="@={viewModel.description}"
+                    android:layout_marginBottom="16dp"
                     android:hint="@string/description"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.description}"
+                    android:textSize="20sp" />
 
 
                 <LinearLayout
