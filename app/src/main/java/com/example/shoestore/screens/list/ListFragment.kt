@@ -1,24 +1,19 @@
 package com.example.shoestore.screens.list
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.shoestore.MainActivity
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentListBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -27,50 +22,46 @@ private const val ARG_PARAM2 = "param2"
  */
 class ListFragment : Fragment() {
 
-
     private lateinit var viewModel: ListViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.i("List Fragment==", "Created")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //Set the menu option in toolbar
         setHasOptionsMenu(true)
+
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_list, container, false)
-
-        val args: ListFragmentArgs by navArgs()
-
         val binding: FragmentListBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
 
-        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        //Initialize the viewModel object
+        viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
 
+        //Binding the viewModel
         binding.viewModel = viewModel
 
-        val listData: String = args.listDetail
+        //Click on floating action button navigate to List Fragment to Shoe detail Fragment
+        binding.fab.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_listFragment_to_shoeDetailFragment)
+        )
 
-        binding.fab.setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToShoeDetailFragment(listData)
-
-            findNavController().navigate(action)
-        }
-
-        if (listData.isNotBlank()) {
-            viewModel.addInList(binding.linList, listData, activity)
-        }
+        //Observe the data for shoe list
+        viewModel.getShoeListLive().observe(viewLifecycleOwner, Observer {
+            viewModel.addInList(binding.linList, it, activity)
+        })
 
         return binding.root
     }
 
+    //Create the option menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.shoe_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    //Handle the select menu item event
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
@@ -83,10 +74,5 @@ class ListFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        Log.i("List fragment", "==Destroyed")
-        super.onDestroy()
     }
 }

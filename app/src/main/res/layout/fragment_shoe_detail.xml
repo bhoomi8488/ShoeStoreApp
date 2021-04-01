@@ -1,115 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".screens.detail.ShoeDetailFragment">
 
+    <!--Binding the shoe detail fragment and listview model-->
     <data class="com.example.shoestore.databinding.FragmentShoeDetailBinding">
 
         <variable
             name="viewModel"
-            type="com.example.shoestore.screens.detail.ShoeDetailViewModel" />
+            type="com.example.shoestore.screens.list.ListViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--Use Scrollview so in Landscape mode we able to enter data-->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:textAlignment="center">
+        android:layout_height="match_parent">
 
-        <ScrollView
+        <!--Easily manage the data in scrollview-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="84dp"
+                android:text="@string/shoe_detail"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edShoeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:hint="@string/shoe_name"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.shoeName}"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:hint="@string/company"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.compney}"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edShoeSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:hint="@string/shoe_size"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.shoeSize}"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:hint="@string/description"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.description}"
+                android:textSize="20sp" />
+
+            <!--Set the button horizontal in scroll view-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-
-                <TextView
-                    android:id="@+id/txtTitle"
-                    style="@style/text_style"
+                <Button
+                    android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="84dp"
-                    android:layout_margin="16dp"
-                    android:text="@string/shoe_detail"
-                    android:textSize="24sp" />
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@android:string/cancel" />
 
-                <EditText
-                    android:id="@+id/edShoeName"
+                <Button
+                    android:id="@+id/btnSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:ems="10"
-                    android:hint="@string/shoe_name"
-                    android:inputType="textPersonName"
-                    android:text="@={viewModel.shoeName}"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/edCompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:ems="10"
-                    android:hint="@string/company"
-                    android:inputType="textPersonName"
-                    android:text="@={viewModel.compney}"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/edShoeSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:layout_marginBottom="16dp"
-                    android:hint="@string/shoe_size"
-                    android:inputType="textPersonName"
-                    android:text="@={viewModel.shoeSize}"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/edDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:layout_marginBottom="16dp"
-                    android:hint="@string/description"
-                    android:inputType="textPersonName"
-                    android:text="@={viewModel.description}"
-                    android:textSize="20sp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnCancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:text="@android:string/cancel" />
-
-                    <Button
-                        android:id="@+id/btnSave"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/save" />
-                </LinearLayout>
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/save" />
             </LinearLayout>
-        </ScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </layout>

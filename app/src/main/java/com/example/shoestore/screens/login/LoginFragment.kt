@@ -61,11 +61,12 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        //Login with create account and navigate to list Fragment
         binding.btnLogin.setOnClickListener {
             if (status!!) {
                 if (viewModel.performValidation()) {
                     val action =
-                        LoginFragmentDirections.actionLoginFragmentToListFragment(storeList.toString())
+                        LoginFragmentDirections.actionLoginFragmentToListFragment()
                     findNavController().navigate(action)
                 }
             } else {
@@ -73,52 +74,25 @@ class LoginFragment : Fragment() {
             }
         }
 
+        //Handle the on create the button event, validate the data and store into savePreference
+        //Navigate to welcome fragment
         binding.btnCreate.setOnClickListener {
             if (viewModel.performValidation()) {
                 savePreference()
-
                 val action = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
                 findNavController().navigate(action)
             }
         }
-
-
         // Watching for login result
         viewModel.getLogInResult().observe(this.viewLifecycleOwner, Observer { result ->
-            Log.i("observer", "loginreslut===" + result)
-
             Toast.makeText(activity, result, Toast.LENGTH_SHORT).show()
-            //Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
-
         })
-
-        /*
-           // Watching for login result
-           viewModel.getIsLogin().observe(this.viewLifecycleOwner, Observer { isLogin ->
-               Log.i("observer", "login status=== " + isLogin)
-
-              if(isLogin){
-                   val action =  LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
-                   findNavController().navigate(action)
-               }
-           })*/
-
-
 
         return binding.root
     }
 
-    fun savePreference() {
-
-
-        /*val preference=
-            this.activity?.getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
-        val editor=preference.edit()
-        editor.putBoolean("isLoggedIn",true)
-        editor.putInt("id",1)
-        editor.putString("name","Alex")
-        editor.commit()*/
-
+    //save the login detail into savePreference
+    private fun savePreference() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
             putString(USER_EMAIL, viewModel.email)
@@ -127,10 +101,6 @@ class LoginFragment : Fragment() {
             apply()
         }
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
 }

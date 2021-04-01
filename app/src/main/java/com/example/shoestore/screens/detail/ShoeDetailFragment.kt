@@ -16,6 +16,8 @@ import com.example.shoestore.MainActivity
 import com.example.shoestore.R
 import com.example.shoestore.databinding.FragmentShoeDetailBinding
 import com.example.shoestore.screens.instruction.InstructionFragmentDirections
+import com.example.shoestore.screens.list.ListViewModel
+import com.example.shoestore.screens.login.LoginFragmentDirections
 
 /**
  * A simple [Fragment] subclass.
@@ -23,70 +25,43 @@ import com.example.shoestore.screens.instruction.InstructionFragmentDirections
  * create an instance of this fragment.
  */
 class ShoeDetailFragment : Fragment() {
-
-    private lateinit var viewModel: ShoeDetailViewModel
+    private lateinit var viewModel: ListViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_shoe_detail, container, false)
-        setHasOptionsMenu(true)
         var binding: FragmentShoeDetailBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_shoe_detail, container, false
         )
 
-        viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
+        //Initialize the view model
+        viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
 
         // Setting binding params
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val args: ShoeDetailFragmentArgs by navArgs()
-
-        viewModel.previousList = args.listOfShoe
-
+        //Handle the validation on save button and navigate back to list fragment
         binding.btnSave.setOnClickListener {
             if (viewModel.performValidation()) {
-                val action =
-                    ShoeDetailFragmentDirections.actionShoeDetailFragmentToListFragment(viewModel.getShoe())
+                val action = ShoeDetailFragmentDirections.actionShoeDetailFragmentToListFragment()
                 findNavController().navigate(action)
             }
         }
 
+        //Navigate back to list fragment
         binding.btnCancel.setOnClickListener {
-            val action =
-                ShoeDetailFragmentDirections.actionShoeDetailFragmentToListFragment(viewModel.previousList)
+            viewModel.back()
+            val action = ShoeDetailFragmentDirections.actionShoeDetailFragmentToListFragment()
             findNavController().navigate(action)
         }
 
+        //Observe the shoe detail field validation
         viewModel.getsaveResult().observe(this.viewLifecycleOwner, Observer { result ->
-            Log.i("observer", "login status=== " + result)
             Toast.makeText(activity, result, Toast.LENGTH_SHORT).show()
         })
-
         return binding.root
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.shoe_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-
-            R.id.menuLogout -> {
-                val i = activity as MainActivity
-                i.savePreference()
-                startActivity(Intent(activity, MainActivity::class.java))
-                getActivity()?.finishAffinity();
-                return false
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-
 }

@@ -19,9 +19,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.shoestore.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
-
+/**
+ * Created by Bhoomi on 3/29/2021.
+ *
+ * MainActivity set up the toolbar,
+ *
+ *
+ */
 class MainActivity : AppCompatActivity() {
-
 
     private lateinit var navController: NavController
 
@@ -37,8 +42,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
 
-
-        //toolbar.inflateMenu(R.menu.shoe_menu)
+        //On fragment destionation change, remove backstack for the login Fragment
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->
             if (nd.id == nc.graph.startDestination) {
                 Log.i("mode==", "UNlocked")
@@ -46,15 +50,15 @@ class MainActivity : AppCompatActivity() {
                 navController.popBackStack(R.id.action_loginFragment_to_listFragment, true)
             }
         }
-        //toolbar.inflateMenu(R.menu.shoe_menu)
+        //set the toolbar in actionbar
         setSupportActionBar(toolbar);
 
+        //setup the toolbar with navigation controller
         toolbar.setupWithNavController(navController, appBarConfiguration)
-        //NavigationUI.setupWithNavController(toolbar, navController)
-        //  NavigationUI.setupActionBarWithNavController(this@MainActivity, navController, appBarConfiguration)
 
     }
 
+    //clear the data from savePreference for logout click
     fun savePreference() {
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {

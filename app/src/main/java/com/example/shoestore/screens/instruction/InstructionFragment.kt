@@ -14,6 +14,8 @@ import com.example.shoestore.screens.welcome.WelcomeFragmentDirections
 
 
 /**
+ *
+ * Created by Bhoomi on 3/29/2021.
  * A simple [Fragment] subclass.
  * Use the [InstructionFragment.newInstance] factory method to
  * create an instance of this fragment.
@@ -25,38 +27,14 @@ class InstructionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_instruction, container, false)
-        setHasOptionsMenu(true)
         val binding: FragmentInstructionBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_instruction, container, false
         )
-
-        binding.btnShoeList.setOnClickListener {
-
-            val action = InstructionFragmentDirections.actionInstructionFragmentToListFragment("")
-            findNavController().navigate(action)
-        }
-
+        //Navidate from Insrtuction to List Fragment
+        binding.btnShoeList.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_instructionFragment_to_listFragment)
+        )
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.shoe_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-
-            R.id.menuLogout -> {
-                val i = activity as MainActivity
-                i.savePreference()
-                startActivity(Intent(activity, MainActivity::class.java))
-                getActivity()?.finishAffinity();
-                return false
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

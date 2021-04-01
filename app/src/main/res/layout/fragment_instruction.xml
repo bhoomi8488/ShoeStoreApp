@@ -4,12 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.instruction.InstructionFragment">
 
+    <!--Linearlayout for showing two textview in vertical orientation-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:textAlignment="center">
 
+        <!--Instruction Header-->
         <TextView
             android:id="@+id/txtWelcome"
             android:layout_width="wrap_content"
@@ -36,6 +38,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <!--Instruction Detail-->
                 <TextView
                     android:id="@+id/txt_welcome_detail"
                     style="@style/text_style"
@@ -44,13 +47,14 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/instruction_detail" />
 
+                <!--Button navigate to List fragment-->
                 <Button
                     android:id="@+id/btn_Shoe_list"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginRight="16dp"
-                    android:layout_height="wrap_content"
-                    android:text="Shoe List" />
+                    android:text="@string/shoe_list" />
             </LinearLayout>
         </ScrollView>
 

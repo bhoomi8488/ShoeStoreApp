@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.list.ListFragment">
 
+    <!--Binding the data with fragment list and viewmodel-->
     <data class="com.example.shoestore.databinding.FragmentListBinding">
 
         <variable
@@ -11,6 +13,7 @@
     </data>
 
 
+    <!--Framelayout used for the FABbutton on scrollview-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,41 +29,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <!--<ListView
-                    android:id="@+id/listView"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-
-                    tools:ignore="NestedScrolling" />-->
-                <!-- <LinearLayout
-                     android:id="@+id/child_list"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:orientation="vertical">
-
-                     &lt;!&ndash;<TextView
-                         android:id="@+id/txtDetail"
-                         style="@style/text_list"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="Name" />&ndash;&gt;
-
-
-                 </LinearLayout>
-     -->
-
 
             </LinearLayout>
 
         </ScrollView>
 
+        <!--Floating action Button for add the shoe detail -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:contentDescription="@string/cancel" />
+            android:contentDescription="@string/cancel"
+            app:srcCompat="@android:drawable/ic_input_add" />
     </FrameLayout>
 
 
